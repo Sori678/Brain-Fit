@@ -63,3 +63,22 @@ header {
 .nav-menu {
     display: none;
 }
+/* nav links*/
+nav>ul {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    justify-items: start;
+}
+
+a {
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--tertiary-color);
+}
