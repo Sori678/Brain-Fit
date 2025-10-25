@@ -132,3 +132,21 @@ a:hover {
     aspect-ratio: 1 / 1;
     outline: none;
 }
+/* Number memory */
+.num-memory-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: auto;
+    gap: 3px;
+}
+
+#number {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.numberr {
+    display: block;
+    background-color: var(--secondary-color);
+    height: 70px;
+}
