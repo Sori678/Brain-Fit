@@ -213,3 +213,29 @@ ul>li {
     list-style: none;
     margin-left: -7%;
 }
+/* Footer Section */
+footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+    border: #000000 dotted 2px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* Contact Section */
+#contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--primary-color);
+    color: var(--quaternary-color);
+}
+
+#contact ul>li {
+    display: grid;
+    gap: 20px;
+    padding: 10px;
+}
