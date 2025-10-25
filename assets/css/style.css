@@ -1,7 +1,7 @@
 /* Font link */
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
+/* global style */
 * {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -15,4 +15,22 @@
     --secondary-color: #4285b8;
     --tertiary-color: #DB1000;
     --quaternary-color: #000000;
+}
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    background: var(--primary-color);
+    color: var(--quaternary-color);
+    padding: 10px;
+    min-height: 100vh;
+}
+
+/* Main */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    color: var(--secondary-color);
+    text-align: center;
+    width: 100%;
 }
