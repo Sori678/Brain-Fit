@@ -192,3 +192,24 @@ button[disabled] {
   opacity: .5;
   pointer-events: none;
 }
+
+/* About Section */
+#about {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: antiquewhite;
+    color: var(--quaternary-color);
+    border: #000000 solid 2px;
+    border-radius: 5px;
+    padding: 5px;
+    height: 300px;
+    width: auto;
+    margin: 5px;
+    overflow: auto;
+}
+
+ol>li,
+ul>li {
+    list-style: none;
+    margin-left: -7%;
+}
