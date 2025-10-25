@@ -158,3 +158,37 @@ a:hover {
     justify-content: space-evenly;
     height: auto;
 }
+/* Control buttons */
+.btn1,
+.btn2,
+.btn3 {
+    border-radius: 3px;
+    border: none;
+    transition: transform 0.3s ease, opacity 0.2s ease, background-color .2s ease;
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn1 {
+    background-color: green;
+}
+
+.btn2 {
+    background-color: rgb(244, 49, 0);
+}
+
+.btn3 {
+    background-color: rgb(210, 154, 0);
+}
+
+.btn1:hover,
+.btn2:hover,
+.btn3:hover {
+    transform: scale(1.08);
+}
+button[disabled] {
+  opacity: .5;
+  pointer-events: none;
+}
