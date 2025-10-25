@@ -34,3 +34,32 @@ main {
     text-align: center;
     width: 100%;
 }
+/* Header Section */
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: left;
+    height: fit-content;
+    outline: var(--secondary-color) 2px solid;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Logo */
+.logo {
+    width: 130px;
+}
+
+/* Nav section */
+#barr {
+    display: grid;
+    width: 30px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+/* hidden by default */
+.nav-menu {
+    display: none;
+}
