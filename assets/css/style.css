@@ -150,3 +150,11 @@ a:hover {
     background-color: var(--secondary-color);
     height: 70px;
 }
+
+/* control */
+.control {
+    display: flex;
+    margin: 5px;
+    justify-content: space-evenly;
+    height: auto;
+}
