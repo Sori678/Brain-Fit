@@ -239,3 +239,23 @@ footer {
     gap: 20px;
     padding: 10px;
 }
+@media screen and (min-width:768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-menu {
+        display: flex;
+    }
+
+    nav>ul {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    #barr {
+        display: none;
+    }
+}
