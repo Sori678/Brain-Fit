@@ -82,3 +82,34 @@ a {
 a:hover {
     color: var(--tertiary-color);
 }
+/* Games Section */
+#games {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    justify-self: center;
+    text-align: center;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    width: 100%;
+    height: auto;
+    margin: 5px;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border: 2px solid var(--quaternary-color);
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    margin-top: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
