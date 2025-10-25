@@ -113,3 +113,22 @@ a:hover {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
+/*Games boxes */
+/* Visual memory */
+.vis-memory-boxes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-self: center;
+    width: 100%;
+    gap: 2px;
+}
+
+.vis-memory-box {
+    display: grid;
+    background-color: var(--secondary-color);
+    width: 100%;
+    min-height: 70px;
+    transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
+    aspect-ratio: 1 / 1;
+    outline: none;
+}
