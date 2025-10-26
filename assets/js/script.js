@@ -148,6 +148,18 @@ function initGame(container) {
             setStatus(`Current level: ${s.level}. Press Start.`);
         }, 800);
     };
+    const resetGame = () => {
+        const s = container._state;
+        s.level = 1;
+        s.solution.clear();
+        s.selected.clear();
+        s.phase = 'idle';
+        setBusy(false);
+        clearVisual();
+        btnStart.disabled = false;
+        btnConfirm.disabled = true;
+        setStatus('Game reset. Press Start.');
+    };
     // listeners atached once
     container.addEventListener('click', onCellClick); 
     btnStart.addEventListener('click', startRound);
