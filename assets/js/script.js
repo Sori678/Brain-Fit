@@ -22,6 +22,7 @@ function initGame(container) {
     const btnStart = container.querySelector('.btn1'); // Start / Next
     const btnConfirm = container.querySelector('.btn3'); // Confirm
     const btnReset = container.querySelector('.btn2'); // Reset
+    const con1 = document.querySelector('.con1');
     const statusEl = container.querySelector('.status'); // message UX
     if (!cells.length || !btnStart || !btnConfirm || !btnReset) return;
 
@@ -40,7 +41,8 @@ function initGame(container) {
         solution: new Set(),
         selected: new Set(),
         phase: 'idle',
-        busy: false
+        busy: false,
+        gridSize: INITIAL_GRID_SIZE
     };
     const makeCell = () => {
         const btn = document.createElement('button');
@@ -51,11 +53,9 @@ function initGame(container) {
     };
     // set number of cells
     const setGridCols = (cols) => {
-        if (!boxContainer) return;
-        boxContainer.style.display = 'grid';
-        boxContainer.style.gridTemplateColumns = `repeat(${cols}, 64px)`;
-        if (!boxContainer.style.gap) boxContainer.style.gap = '8px';
+        if (boxContainer) boxContainer.style.setProperty('--cols', cols);
     };
+
     const setGridSize = (size) => {
         if (!boxContainer) return;
         const want = size * size;
@@ -70,6 +70,19 @@ function initGame(container) {
         refreshCells();
     };
     const resetGridToInitial = () => setGridSize(INITIAL_GRID_SIZE);
+    const getDesiredGridSizeForLevel = (level) => {
+        const expansions = Math.floor((level - 1) / 7);
+        return INITIAL_GRID_SIZE + expansions;
+    };
+
+    const ensureGridForLevel = () => {
+        const s = container._state;
+        const desired = getDesiredGridSizeForLevel(s.level);
+        if (!s.gridSize || s.gridSize !== desired) {
+            setGridSize(desired);
+            s.gridSize = desired;
+        }
+    };
     // helpers UI
     const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
     const setBusy = (val) => {
@@ -107,11 +120,12 @@ function initGame(container) {
     const startRound = () => {
         const s = container._state;
         if (s.busy) return;
+        ensureGridForLevel();
         // visual reset + states
         clearVisual();
         s.selected.clear();
         s.solution.clear();
-
+        con1.classList.add('tog');
         // calculate how many cells light up
         const target = computeTarget();
         const chosen = pickUnique(target, cells.length);
@@ -168,6 +182,7 @@ function initGame(container) {
         if (success) {
             setStatus('Corect! 🎉');
             s.level += 1;
+            ensureGridForLevel();
         } else {
             setStatus('Wrong. Try again.');
         }
@@ -191,6 +206,8 @@ function initGame(container) {
         s.selected.clear();
         s.phase = 'idle';
         setBusy(false);
+        resetGridToInitial();
+        s.gridSize = INITIAL_GRID_SIZE;
         clearVisual();
         btnStart.disabled = false;
         btnConfirm.disabled = true;

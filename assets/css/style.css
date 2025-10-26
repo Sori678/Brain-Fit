@@ -1,6 +1,7 @@
 /* Font link */
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 /* global style */
 * {
     box-sizing: border-box;
@@ -16,6 +17,7 @@
     --tertiary-color: #DB1000;
     --quaternary-color: #000000;
 }
+
 body {
     display: grid;
     grid-template-columns: 1fr;
@@ -35,6 +37,7 @@ main {
     text-align: center;
     width: 100%;
 }
+
 /* Header Section */
 header {
     display: grid;
@@ -64,9 +67,11 @@ header {
 .nav-menu {
     display: none;
 }
+
 .nav-menu.is-open {
     display: grid;
 }
+
 /* nav links*/
 nav>ul {
     display: grid;
@@ -86,6 +91,7 @@ a {
 a:hover {
     color: var(--tertiary-color);
 }
+
 /* Games Section */
 #games {
     display: grid;
@@ -96,7 +102,7 @@ a:hover {
     text-align: center;
     background: var(--primary-color);
     color: var(--secondary-color);
-    width: 100%;
+    width: auto;
     height: auto;
     margin: 5px;
 }
@@ -107,7 +113,6 @@ a:hover {
     justify-content: center;
     align-self: center;
     width: 100%;
-    max-width: 500px;
     height: auto;
     border: 2px solid var(--quaternary-color);
     border-radius: 5px;
@@ -124,14 +129,16 @@ a:hover {
     cursor: not-allowed;
     opacity: .7;
 }
+
 /*Games boxes */
 /* Visual memory */
+
 .vis-memory-boxes {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-self: center;
-    width: 100%;
     gap: 2px;
+    width: 100%;
+    grid-template-columns: repeat(var(--cols, 4), auto);
+    justify-content: center;
 }
 
 
@@ -145,6 +152,7 @@ a:hover {
     aspect-ratio: 1 / 1;
     outline: none;
 }
+
 .vis-memory-box.is-lit {
     background-color: #9cc1dc;
     box-shadow: 0 0 0 2px var(--secondary-color) inset;
@@ -163,6 +171,7 @@ a:hover {
 .vis-memory-box.is-wrong {
     background-color: #DB1000;
 }
+
 /* Number memory */
 .num-memory-boxes {
     display: grid;
@@ -189,6 +198,7 @@ a:hover {
     justify-content: space-evenly;
     height: auto;
 }
+
 /* Control buttons */
 .btn1,
 .btn2,
@@ -219,9 +229,10 @@ a:hover {
 .btn3:hover {
     transform: scale(1.08);
 }
+
 button[disabled] {
-  opacity: .5;
-  pointer-events: none;
+    opacity: .5;
+    pointer-events: none;
 }
 
 /* About Section */
@@ -244,6 +255,7 @@ ul>li {
     list-style: none;
     margin-left: -7%;
 }
+
 /* Footer Section */
 footer {
     display: grid;
@@ -270,6 +282,7 @@ footer {
     gap: 20px;
     padding: 10px;
 }
+
 @media screen and (min-width:768px) {
     header {
         display: flex;
@@ -288,5 +301,11 @@ footer {
 
     #barr {
         display: none;
+    }
+
+    .con1.tog {
+        top: 100px;
+        transform: scale(1.4);
+        margin-top: 25%;
     }
 }
