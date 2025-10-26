@@ -27,8 +27,8 @@ function initGame(container) {
 
     //cells expand
     const boxContainer = container.querySelector('.vis-memory-boxes');
-    const INITIAL_CELL_COUNT = cells.length;                          
-    const INITIAL_GRID_SIZE = Math.round(Math.sqrt(INITIAL_CELL_COUNT)); 
+    const INITIAL_CELL_COUNT = cells.length;
+    const INITIAL_GRID_SIZE = Math.round(Math.sqrt(INITIAL_CELL_COUNT));
     const refreshCells = () => {
         cells = Array.from(container.querySelectorAll('.vis-memory-box'));
     };
@@ -41,6 +41,20 @@ function initGame(container) {
         selected: new Set(),
         phase: 'idle',
         busy: false
+    };
+    const makeCell = () => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'vis-memory-box';
+        btn.setAttribute('aria-label', 'cell');
+        return btn;
+    };
+    // set number of cells
+    const setGridCols = (cols) => {
+        if (!boxContainer) return;
+        boxContainer.style.display = 'grid';
+        boxContainer.style.gridTemplateColumns = `repeat(${cols}, 64px)`;
+        if (!boxContainer.style.gap) boxContainer.style.gap = '8px';
     };
     // helpers UI
     const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
