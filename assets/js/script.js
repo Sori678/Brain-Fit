@@ -279,4 +279,14 @@ const vm_upsertPlayer = ({ name, email }) => {
   vm_setCurrentId(id);
   return players[id];
 };
-
+const vm_updateHighLevel = (levelReached) => {
+  const player = vm_getCurrentPlayer();
+  if (!player) return;
+  const players = vm_loadPlayers();
+  const p = players[player.id];
+  const cur = p.records?.visualMemory?.highLevel || 1;
+  if (levelReached > cur) {
+    p.records.visualMemory.highLevel = levelReached;
+    vm_savePlayers(players);
+  }
+};
