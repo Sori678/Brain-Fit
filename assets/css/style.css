@@ -113,6 +113,7 @@ a:hover {
     justify-content: center;
     align-self: center;
     width: 100%;
+    min-width: 300px;
     height: auto;
     border: 2px solid var(--quaternary-color);
     border-radius: 5px;
@@ -137,17 +138,18 @@ a:hover {
     display: grid;
     gap: 2px;
     width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
     grid-template-columns: repeat(var(--cols, 4), auto);
     justify-content: center;
 }
 
-
-
 .vis-memory-box {
     display: grid;
     background-color: var(--secondary-color);
+    aspect-ratio: 1/1; 
     width: 100%;
-    min-height: 70px;
+    max-width: 80px; 
     transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
     aspect-ratio: 1 / 1;
     outline: none;
@@ -234,6 +236,7 @@ button[disabled] {
     opacity: .5;
     pointer-events: none;
 }
+
 /* close button */
 .close {
     visibility: hidden;
@@ -248,6 +251,7 @@ button[disabled] {
 .close:hover {
     transform: scale(1.2);
 }
+
 /* About Section */
 #about {
     display: grid;
@@ -319,6 +323,9 @@ footer {
     .con1.tog {
         top: 100px;
         transform: scale(1.4);
-        margin-top: 25%;
+        margin-top: 30%;
+    }
+    .close.btni1.visible {
+        visibility: visible;
     }
 }

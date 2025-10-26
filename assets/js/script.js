@@ -23,6 +23,7 @@ function initGame(container) {
     const btnConfirm = container.querySelector('.btn3'); // Confirm
     const btnReset = container.querySelector('.btn2'); // Reset
     const con1 = document.querySelector('.con1');
+    const btni1 = document.querySelector('.btni1');
     const statusEl = container.querySelector('.status'); // message UX
     if (!cells.length || !btnStart || !btnConfirm || !btnReset) return;
 
@@ -126,6 +127,13 @@ function initGame(container) {
         s.selected.clear();
         s.solution.clear();
         con1.classList.add('tog');
+        btni1.classList.add('visible');
+        btni1.addEventListener('click', () => {
+            if (btni1) {
+                con1.classList.remove('tog');
+                btni1.classList.remove('visible');
+            }
+        });
         // calculate how many cells light up
         const target = computeTarget();
         const chosen = pickUnique(target, cells.length);
