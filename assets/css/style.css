@@ -20,6 +20,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
+    font-family: var(--primary-font);
     background: var(--primary-color);
     color: var(--quaternary-color);
     padding: 10px;
@@ -89,6 +90,7 @@ a:hover {
 #games {
     display: grid;
     grid-template-columns: 1fr;
+    font-family: var(--secundary-font);
     justify-items: center;
     justify-self: center;
     text-align: center;
