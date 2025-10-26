@@ -51,6 +51,22 @@ function initGame(container) {
         const s = container._state;
         return Math.min(s.baseCount + (s.level - 1), cells.length);
     };
+    // displaying the memorized pattern
+    const showPattern = () => {
+        const s = container._state;
+        s.phase = 'memorize';
+        setBusy(true);
+        setStatus('Memorize…');
 
+        s.solution.forEach(idx => cells[idx].classList.add('is-lit'));
+
+        setTimeout(() => {
+            s.solution.forEach(idx => cells[idx].classList.remove('is-lit'));
+            s.phase = 'select';
+            setBusy(false);
+            setStatus(`Select ${s.solution.size} cells.`);
+            btnConfirm.disabled = true;
+        }, s.memTime);
+    };
 }
 document.querySelectorAll('.con1').forEach(initGame);
