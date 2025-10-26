@@ -25,7 +25,7 @@
         <!-- nav-->
         <nav class="nav-menu">
             <ul>
-                <li><a href="#games">Play</a></li>
+                <li><a href="#games" id="nav-play">Play</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -154,6 +154,29 @@
     <script src="https://kit.fontawesome.com/d72aa3ab2e.js" crossorigin="anonymous" defer></script>
     <!-- Js link -->
     <script src="assets/js/script.js" defer></script>
+    <!-- Sign in -->
+    <div id="sign" class="sign" aria-hidden="true" role="dialog" aria-labelledby="auth-title">
+        <div class="auth-dialog">
+            <button type="button" class="sign-btn" aria-label="Close">✕</button>
+            <h3 id="sign-in-registration">Registration</h3>
+            <p class="scor">Enter your name or email to save your score.</p>
+
+            <form id="registration-form">
+                <div class="auth-field">
+                    <label for="auth-name">Name</label>
+                    <input id="auth-name" name="name" type="text" placeholder="your name" autocomplete="name" />
+                </div>
+                <div class="auth-field">
+                    <label for="auth-email">Email</label>
+                    <input id="auth-email" name="email" type="email" placeholder="ex: ana@email.com"
+                        autocomplete="email" />
+                </div>
+                <button type="submit" class="auth-submit">Continue</button>
+            </form>
+
+            <p class="auth-hint">At least the name or email — one of them.</p>
+        </div>
+    </div>
 </body>
 
 </html>
