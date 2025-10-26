@@ -300,3 +300,27 @@ const vm_openAuth = () => {
   authModal.querySelector('#auth-name')?.focus();
 };
 const vm_closeAuth = () => authModal?.setAttribute('aria-hidden', 'true');
+
+const requireAuth = (onReady) => {
+  const user = vm_getCurrentPlayer();
+  if (user) { onReady?.(user); return; }
+  vm_openAuth();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const name  = authForm.querySelector('#auth-name')?.value || '';
+    const email = authForm.querySelector('#auth-email')?.value || '';
+    if (!name.trim() && !email.trim()) {
+      alert('Enter your name or email (at least one).');
+      return;
+    }
+    const u = vm_upsertPlayer({ name, email });
+    vm_closeAuth();
+    authForm.removeEventListener('submit', onSubmit);
+    onReady?.(u);
+  };
+  authForm?.addEventListener('submit', onSubmit);
+};
+authClose?.addEventListener('click', vm_closeAuth);
+authModal?.addEventListener('click', (e) => {
+  if (e.target === authModal) vm_closeAuth(); 
+});
