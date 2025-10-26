@@ -290,3 +290,13 @@ const vm_updateHighLevel = (levelReached) => {
     vm_savePlayers(players);
   }
 };
+const authModal = document.getElementById('sign');
+const authForm  = document.getElementById('registration-form');
+const authClose = authModal?.querySelector('.sign-btnc');
+
+const vm_openAuth = () => {
+  if (!authModal) return;
+  authModal.setAttribute('aria-hidden', 'false');
+  authModal.querySelector('#auth-name')?.focus();
+};
+const vm_closeAuth = () => authModal?.setAttribute('aria-hidden', 'true');
