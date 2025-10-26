@@ -46,5 +46,11 @@ function initGame(container) {
             c.style.backgroundColor = '';
         });
     };
+    // logical calculation for how difficult the round is
+    const computeTarget = () => {
+        const s = container._state;
+        return Math.min(s.baseCount + (s.level - 1), cells.length);
+    };
+
 }
 document.querySelectorAll('.con1').forEach(initGame);
