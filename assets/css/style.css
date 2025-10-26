@@ -143,6 +143,24 @@ a:hover {
     aspect-ratio: 1 / 1;
     outline: none;
 }
+.vis-memory-box.is-lit {
+    background-color: #9cc1dc;
+    box-shadow: 0 0 0 2px var(--secondary-color) inset;
+}
+
+.vis-memory-box.is-selected {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px var(--secondary-color) inset;
+    transform: scale(0.98);
+}
+
+.vis-memory-box.is-correct {
+    background-color: #21a179;
+}
+
+.vis-memory-box.is-wrong {
+    background-color: #DB1000;
+}
 /* Number memory */
 .num-memory-boxes {
     display: grid;

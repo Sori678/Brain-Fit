@@ -40,5 +40,11 @@ function initGame(container) {
         container._state.busy = val;
         container.classList.toggle('is-busy', val);
     };
+    const clearVisual = () => {
+        cells.forEach(c => {
+            c.classList.remove('is-lit', 'is-selected', 'is-correct', 'is-wrong');
+            c.style.backgroundColor = '';
+        });
+    };
 }
 document.querySelectorAll('.con1').forEach(initGame);
