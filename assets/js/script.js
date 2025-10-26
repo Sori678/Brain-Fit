@@ -85,5 +85,13 @@ function initGame(container) {
         setStatus(`Level ${s.level}: Get ready!`);
         showPattern();
     };
+    // listeners atached once
+    container.addEventListener('click', onCellClick); // delegation to cells
+    btnStart.addEventListener('click', startRound);
+    btnConfirm.addEventListener('click', confirmSelection);
+    btnReset.addEventListener('click', resetGame);
+     // init UI
+    btnConfirm.disabled = true;
+    setStatus('Ready. Press Start.');
 }
 document.querySelectorAll('.con1').forEach(initGame);
