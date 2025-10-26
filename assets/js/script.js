@@ -242,3 +242,11 @@ function initGame(container) {
     setStatus('Ready. Press Start.');
 }
 document.querySelectorAll('.con1').forEach(initGame);
+
+// user, and score storage 
+const VM_STORE = {
+  currentKey: 'vm_current_player',
+  playersKey: 'vm_players' 
+};
+
+
