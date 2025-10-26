@@ -1,4 +1,3 @@
-
 // toggle navbar 
 const navBarr = document.getElementById('barr');
 const navMenu = document.querySelector('.nav-menu');
@@ -201,13 +200,11 @@ function initGame(container) {
         if (success) {
             setStatus('Corect! 🎉');
             s.level += 1;
-            vm_updateHighLevel(s.level - 1);
-            ensureGridForLevel?.();
+            vm_pushTopScore(s.level - 1);
+            vm_renderScoreboard();
         } else {
             setStatus('Wrong. Try again.');
         }
-
-
         // after short feedback, we prepare next/ retry
         setTimeout(() => {
             // clear temporary markers (but keep visual selection if user want)
@@ -234,6 +231,7 @@ function initGame(container) {
         btnStart.disabled = false;
         btnConfirm.disabled = true;
         setStatus('Game reset. Press Start.');
+        vm_renderScoreboard();
     };
     // listeners atached once
     container.addEventListener('click', onCellClick);
@@ -329,6 +327,47 @@ authClose?.addEventListener('click', vm_closeAuth);
 authModal?.addEventListener('click', (e) => {
     if (e.target === authModal) vm_closeAuth();
 });
+
+const vm_pushTopScore = (levelReached) => {
+    const players = vm_loadPlayers();
+    const cur = vm_getCurrentPlayer(); if (!cur) return;
+    const p = players[cur.id];
+    const top = Array.isArray(p.records.visualMemory.top) ? p.records.visualMemory.top.slice() : [];
+    top.push(levelReached);
+    const unique = [...new Set(top)];
+    unique.sort((a, b) => b - a);
+    p.records.visualMemory.top = unique.slice(0, 3);
+    const hl = p.records.visualMemory.highLevel || 1;
+    if (levelReached > hl) p.records.visualMemory.highLevel = levelReached;
+    vm_savePlayers(players);
+};
+const vm_renderScoreboard = () => {
+    const panel = document.getElementById('records');
+    if (!panel) return;
+    const title = panel.querySelector('.title');
+    const userEl = panel.querySelector('.player-name');
+    const list = panel.querySelector('.or-player');
+
+    title && (title.textContent = 'Visual Memory');
+    const cur = vm_getCurrentPlayer();
+    userEl && (userEl.textContent = cur?.name || cur?.email || 'Guest');
+
+    if (list) {
+        list.innerHTML = '';
+        const top = cur?.records?.visualMemory?.top || [];
+        if (top.length === 0) {
+            const li = document.createElement('li');
+            li.textContent = '— you don t have any scores yet —';
+            list.appendChild(li);
+        } else {
+            top.forEach((lvl, i) => {
+                const li = document.createElement('li');
+                li.textContent = `#${i + 1}: Level ${lvl}`;
+                list.appendChild(li);
+            });
+        }
+    }
+};
 document.getElementById('nav-play')?.addEventListener('click', (e) => {
     e.preventDefault();
     requireAuth(() => {
