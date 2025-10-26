@@ -201,10 +201,13 @@ function initGame(container) {
         if (success) {
             setStatus('Corect! 🎉');
             s.level += 1;
-            ensureGridForLevel();
+            vm_updateHighLevel(s.level - 1);
+            ensureGridForLevel?.();
         } else {
             setStatus('Wrong. Try again.');
         }
+
+
         // after short feedback, we prepare next/ retry
         setTimeout(() => {
             // clear temporary markers (but keep visual selection if user want)
@@ -235,7 +238,7 @@ function initGame(container) {
     // listeners atached once
     container.addEventListener('click', onCellClick);
     btnStart.addEventListener('click', () => {
-        requireAuth(() => startRound()); 
+        requireAuth(() => startRound());
     });
     btnConfirm.addEventListener('click', confirmSelection);
     btnReset.addEventListener('click', resetGame);
