@@ -18,23 +18,31 @@ function pickUnique(count, max) {
 }
 // game init 
 function initGame(container) {
-    const cells = Array.from(container.querySelectorAll('.vis-memory-box'));
+    let cells = Array.from(container.querySelectorAll('.vis-memory-box'));
     const btnStart = container.querySelector('.btn1'); // Start / Next
     const btnConfirm = container.querySelector('.btn3'); // Confirm
     const btnReset = container.querySelector('.btn2'); // Reset
     const statusEl = container.querySelector('.status'); // message UX
     if (!cells.length || !btnStart || !btnConfirm || !btnReset) return;
+
+    //cells expand
+    const boxContainer = container.querySelector('.vis-memory-boxes');
+    const INITIAL_CELL_COUNT = cells.length;                          
+    const INITIAL_GRID_SIZE = Math.round(Math.sqrt(INITIAL_CELL_COUNT)); 
+    const refreshCells = () => {
+        cells = Array.from(container.querySelectorAll('.vis-memory-box'));
+    };
     // game state attached to the container
     container._state = {
         level: 1,
         baseCount: 3,
-        memTime: 1000,  
+        memTime: 1000,
         solution: new Set(),
         selected: new Set(),
         phase: 'idle',
         busy: false
     };
-     // helpers UI
+    // helpers UI
     const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
     const setBusy = (val) => {
         container._state.busy = val;
@@ -80,8 +88,8 @@ function initGame(container) {
         const target = computeTarget();
         const chosen = pickUnique(target, cells.length);
         chosen.forEach(i => s.solution.add(i));
-        btnStart.disabled = true;   
-        btnConfirm.disabled = true; 
+        btnStart.disabled = true;
+        btnConfirm.disabled = true;
         setStatus(`Level ${s.level}: Get ready!`);
         showPattern();
     };
@@ -99,7 +107,7 @@ function initGame(container) {
             s.selected.delete(idx);
             cell.classList.remove('is-selected');
         } else {
-            if (s.selected.size >= s.solution.size) return; 
+            if (s.selected.size >= s.solution.size) return;
             s.selected.add(idx);
             cell.classList.add('is-selected');
         }
@@ -121,7 +129,7 @@ function initGame(container) {
         });
         s.solution.forEach(idx => {
             if (!s.selected.has(idx)) {
-                cells[idx].classList.add('is-lit'); 
+                cells[idx].classList.add('is-lit');
             }
         });
         // verdict
@@ -143,7 +151,7 @@ function initGame(container) {
 
             s.phase = 'idle';
             setBusy(false);
-            btnStart.disabled = false; 
+            btnStart.disabled = false;
             btnConfirm.disabled = true;
             setStatus(`Current level: ${s.level}. Press Start.`);
         }, 800);
@@ -161,11 +169,11 @@ function initGame(container) {
         setStatus('Game reset. Press Start.');
     };
     // listeners atached once
-    container.addEventListener('click', onCellClick); 
+    container.addEventListener('click', onCellClick);
     btnStart.addEventListener('click', startRound);
     btnConfirm.addEventListener('click', confirmSelection);
     btnReset.addEventListener('click', resetGame);
-     // init UI
+    // init UI
     btnConfirm.disabled = true;
     setStatus('Ready. Press Start.');
 }

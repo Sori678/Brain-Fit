@@ -107,7 +107,7 @@ a:hover {
     justify-content: center;
     align-self: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 500px;
     height: auto;
     border: 2px solid var(--quaternary-color);
     border-radius: 5px;
@@ -133,6 +133,8 @@ a:hover {
     width: 100%;
     gap: 2px;
 }
+
+
 
 .vis-memory-box {
     display: grid;
