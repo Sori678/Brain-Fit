@@ -24,5 +24,15 @@ function initGame(container) {
     const btnReset = container.querySelector('.btn2'); // Reset
     const statusEl = container.querySelector('.status'); // message UX
     if (!cells.length || !btnStart || !btnConfirm || !btnReset) return;
+    // game state attached to the container
+    container._state = {
+        level: 1,
+        baseCount: 3,
+        memTime: 1000,  
+        solution: new Set(),
+        selected: new Set(),
+        phase: 'idle',
+        busy: false
+    };
 }
 document.querySelectorAll('.con1').forEach(initGame);
