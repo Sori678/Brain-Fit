@@ -56,6 +56,20 @@ function initGame(container) {
         boxContainer.style.gridTemplateColumns = `repeat(${cols}, 64px)`;
         if (!boxContainer.style.gap) boxContainer.style.gap = '8px';
     };
+    const setGridSize = (size) => {
+        if (!boxContainer) return;
+        const want = size * size;
+        const have = boxContainer.children.length;
+
+        if (have < want) {
+            for (let i = 0; i < want - have; i++) boxContainer.appendChild(makeCell());
+        } else if (have > want) {
+            for (let i = 0; i < have - want; i++) boxContainer.lastElementChild.remove();
+        }
+        setGridCols(size);
+        refreshCells();
+    };
+    const resetGridToInitial = () => setGridSize(INITIAL_GRID_SIZE);
     // helpers UI
     const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
     const setBusy = (val) => {
