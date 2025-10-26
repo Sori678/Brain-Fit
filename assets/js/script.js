@@ -105,6 +105,49 @@ function initGame(container) {
         }
         btnConfirm.disabled = (s.selected.size !== s.solution.size);
     };
+    const confirmSelection = () => {
+        const s = container._state;
+        if (s.phase !== 'select' || s.busy) return;
+        s.phase = 'feedback';
+        setBusy(true);
+        // visual feedback
+        // correct: selected ∩ solution
+        s.selected.forEach(idx => {
+            if (s.solution.has(idx)) {
+                cells[idx].classList.add('is-correct');
+            } else {
+                cells[idx].classList.add('is-wrong');
+            }
+        });
+        s.solution.forEach(idx => {
+            if (!s.selected.has(idx)) {
+                cells[idx].classList.add('is-lit'); 
+            }
+        });
+        // verdict
+        const success =
+            s.selected.size === s.solution.size &&
+            Array.from(s.solution).every(idx => s.selected.has(idx));
+
+        if (success) {
+            setStatus('Corect! 🎉');
+            s.level += 1;
+        } else {
+            setStatus('Wrong. Try again.');
+        }
+        // after short feedback, we prepare next/ retry
+        setTimeout(() => {
+            // clear temporary markers (but keep visual selection if user want)
+            cells.forEach(c => c.classList.remove('is-lit', 'is-correct', 'is-wrong', 'is-selected'));
+            s.selected.clear();
+
+            s.phase = 'idle';
+            setBusy(false);
+            btnStart.disabled = false; 
+            btnConfirm.disabled = true;
+            setStatus(`Current level: ${s.level}. Press Start.`);
+        }, 800);
+    };
     // listeners atached once
     container.addEventListener('click', onCellClick); 
     btnStart.addEventListener('click', startRound);
