@@ -324,3 +324,9 @@ authClose?.addEventListener('click', vm_closeAuth);
 authModal?.addEventListener('click', (e) => {
   if (e.target === authModal) vm_closeAuth(); 
 });
+document.getElementById('nav-play')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  requireAuth(() => {
+    document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
