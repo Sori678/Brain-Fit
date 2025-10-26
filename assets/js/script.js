@@ -129,7 +129,7 @@ function initGame(container) {
             if (!s.gridSize || s.gridSize !== desired) {
                 setGridSize(desired);
                 s.gridSize = desired;
-                refreshCells(); 
+                refreshCells();
             }
         };
         // visual reset + states
@@ -234,7 +234,9 @@ function initGame(container) {
     };
     // listeners atached once
     container.addEventListener('click', onCellClick);
-    btnStart.addEventListener('click', startRound);
+    btnStart.addEventListener('click', () => {
+        requireAuth(() => startRound()); 
+    });
     btnConfirm.addEventListener('click', confirmSelection);
     btnReset.addEventListener('click', resetGame);
     // init UI
@@ -245,12 +247,12 @@ document.querySelectorAll('.con1').forEach(initGame);
 
 // user, and score storage 
 const VM_STORE = {
-  currentKey: 'vm_current_player',
-  playersKey: 'vm_players' 
+    currentKey: 'vm_current_player',
+    playersKey: 'vm_players'
 };
 const vm_loadPlayers = () => {
-  try { return JSON.parse(localStorage.getItem(VM_STORE.playersKey)) || {}; }
-  catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(VM_STORE.playersKey)) || {}; }
+    catch { return {}; }
 };
 const vm_savePlayers = (obj) => localStorage.setItem(VM_STORE.playersKey, JSON.stringify(obj || {}));
 
@@ -258,75 +260,75 @@ const vm_getCurrentId = () => localStorage.getItem(VM_STORE.currentKey) || null;
 const vm_setCurrentId = (id) => localStorage.setItem(VM_STORE.currentKey, id);
 
 const vm_getCurrentPlayer = () => {
-  const id = vm_getCurrentId();
-  if (!id) return null;
-  const players = vm_loadPlayers();
-  return players[id] || null;
+    const id = vm_getCurrentId();
+    if (!id) return null;
+    const players = vm_loadPlayers();
+    return players[id] || null;
 };
 const vm_upsertPlayer = ({ name, email }) => {
-  const players = vm_loadPlayers();
-  const id = (email && email.trim()) ? `email:${email.trim().toLowerCase()}` :
-            (name && name.trim()) ? `name:${name.trim().toLowerCase()}` :
+    const players = vm_loadPlayers();
+    const id = (email && email.trim()) ? `email:${email.trim().toLowerCase()}` :
+        (name && name.trim()) ? `name:${name.trim().toLowerCase()}` :
             `anon:${Date.now()}`;
-  if (!players[id]) {
-    players[id] = { id, name: name?.trim() || '', email: email?.trim() || '', records: { visualMemory: { highLevel: 1 } } };
-  } else {
-    if (name && name.trim()) players[id].name = name.trim();
-    if (email && email.trim()) players[id].email = email.trim();
-    if (!players[id].records?.visualMemory) players[id].records = { visualMemory: { highLevel: 1 } };
-  }
-  vm_savePlayers(players);
-  vm_setCurrentId(id);
-  return players[id];
+    if (!players[id]) {
+        players[id] = { id, name: name?.trim() || '', email: email?.trim() || '', records: { visualMemory: { highLevel: 1 } } };
+    } else {
+        if (name && name.trim()) players[id].name = name.trim();
+        if (email && email.trim()) players[id].email = email.trim();
+        if (!players[id].records?.visualMemory) players[id].records = { visualMemory: { highLevel: 1 } };
+    }
+    vm_savePlayers(players);
+    vm_setCurrentId(id);
+    return players[id];
 };
 const vm_updateHighLevel = (levelReached) => {
-  const player = vm_getCurrentPlayer();
-  if (!player) return;
-  const players = vm_loadPlayers();
-  const p = players[player.id];
-  const cur = p.records?.visualMemory?.highLevel || 1;
-  if (levelReached > cur) {
-    p.records.visualMemory.highLevel = levelReached;
-    vm_savePlayers(players);
-  }
+    const player = vm_getCurrentPlayer();
+    if (!player) return;
+    const players = vm_loadPlayers();
+    const p = players[player.id];
+    const cur = p.records?.visualMemory?.highLevel || 1;
+    if (levelReached > cur) {
+        p.records.visualMemory.highLevel = levelReached;
+        vm_savePlayers(players);
+    }
 };
 const authModal = document.getElementById('sign');
-const authForm  = document.getElementById('registration-form');
+const authForm = document.getElementById('registration-form');
 const authClose = authModal?.querySelector('.sign-btnc');
 
 const vm_openAuth = () => {
-  if (!authModal) return;
-  authModal.setAttribute('aria-hidden', 'false');
-  authModal.querySelector('#auth-name')?.focus();
+    if (!authModal) return;
+    authModal.setAttribute('aria-hidden', 'false');
+    authModal.querySelector('#auth-name')?.focus();
 };
 const vm_closeAuth = () => authModal?.setAttribute('aria-hidden', 'true');
 
 const requireAuth = (onReady) => {
-  const user = vm_getCurrentPlayer();
-  if (user) { onReady?.(user); return; }
-  vm_openAuth();
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const name  = authForm.querySelector('#auth-name')?.value || '';
-    const email = authForm.querySelector('#auth-email')?.value || '';
-    if (!name.trim() && !email.trim()) {
-      alert('Enter your name or email (at least one).');
-      return;
-    }
-    const u = vm_upsertPlayer({ name, email });
-    vm_closeAuth();
-    authForm.removeEventListener('submit', onSubmit);
-    onReady?.(u);
-  };
-  authForm?.addEventListener('submit', onSubmit);
+    const user = vm_getCurrentPlayer();
+    if (user) { onReady?.(user); return; }
+    vm_openAuth();
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const name = authForm.querySelector('#auth-name')?.value || '';
+        const email = authForm.querySelector('#auth-email')?.value || '';
+        if (!name.trim() && !email.trim()) {
+            alert('Enter your name or email (at least one).');
+            return;
+        }
+        const u = vm_upsertPlayer({ name, email });
+        vm_closeAuth();
+        authForm.removeEventListener('submit', onSubmit);
+        onReady?.(u);
+    };
+    authForm?.addEventListener('submit', onSubmit);
 };
 authClose?.addEventListener('click', vm_closeAuth);
 authModal?.addEventListener('click', (e) => {
-  if (e.target === authModal) vm_closeAuth(); 
+    if (e.target === authModal) vm_closeAuth();
 });
 document.getElementById('nav-play')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  requireAuth(() => {
-    document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+    e.preventDefault();
+    requireAuth(() => {
+        document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 });
