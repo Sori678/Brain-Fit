@@ -298,6 +298,68 @@ footer {
     padding: 10px;
 }
 
+/* sign */
+.sign[aria-hidden="true"] {
+    display: none;
+}
+    
+.sign {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, .5);
+}
+
+.auth-dialog {
+    width: min(92vw, 420px);
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 16px 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    display: grid;
+    gap: 12px;
+}
+
+.sign-btnc {
+    justify-self: end;
+    border: 0;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.auth-field {
+    display: grid;
+    gap: 6px;
+}
+
+.auth-field input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font: 500 14px/1.2 system-ui, sans-serif;
+}
+
+.auth-submit {
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #0d7bfd;
+    color: #fff;
+    font-weight: 700;
+}
+
+.auth-desc,
+.auth-hint {
+    font: 400 13px/1.3 system-ui, sans-serif;
+    color: #444;
+    margin: 0;
+}
+
 @media screen and (min-width:768px) {
     header {
         display: flex;
