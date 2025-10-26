@@ -85,8 +85,28 @@ function initGame(container) {
         setStatus(`Level ${s.level}: Get ready!`);
         showPattern();
     };
+    const onCellClick = (e) => {
+        const s = container._state;
+        if (s.phase !== 'select' || s.busy) return;
+
+        const cell = e.target.closest('.vis-memory-box');
+        if (!cell) return;
+
+        const idx = cells.indexOf(cell);
+        if (idx < 0) return;
+
+        if (s.selected.has(idx)) {
+            s.selected.delete(idx);
+            cell.classList.remove('is-selected');
+        } else {
+            if (s.selected.size >= s.solution.size) return; 
+            s.selected.add(idx);
+            cell.classList.add('is-selected');
+        }
+        btnConfirm.disabled = (s.selected.size !== s.solution.size);
+    };
     // listeners atached once
-    container.addEventListener('click', onCellClick); // delegation to cells
+    container.addEventListener('click', onCellClick); 
     btnStart.addEventListener('click', startRound);
     btnConfirm.addEventListener('click', confirmSelection);
     btnReset.addEventListener('click', resetGame);
