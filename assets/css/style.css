@@ -118,6 +118,12 @@ a:hover {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
+
+.con1.is-busy .vis-memory-box {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: .7;
+}
 /*Games boxes */
 /* Visual memory */
 .vis-memory-boxes {

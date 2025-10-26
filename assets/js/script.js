@@ -34,5 +34,11 @@ function initGame(container) {
         phase: 'idle',
         busy: false
     };
+     // helpers UI
+    const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
+    const setBusy = (val) => {
+        container._state.busy = val;
+        container.classList.toggle('is-busy', val);
+    };
 }
 document.querySelectorAll('.con1').forEach(initGame);
