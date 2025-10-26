@@ -68,5 +68,22 @@ function initGame(container) {
             btnConfirm.disabled = true;
         }, s.memTime);
     };
+    const startRound = () => {
+        const s = container._state;
+        if (s.busy) return;
+        // visual reset + states
+        clearVisual();
+        s.selected.clear();
+        s.solution.clear();
+
+        // calculate how many cells light up
+        const target = computeTarget();
+        const chosen = pickUnique(target, cells.length);
+        chosen.forEach(i => s.solution.add(i));
+        btnStart.disabled = true;   
+        btnConfirm.disabled = true; 
+        setStatus(`Level ${s.level}: Get ready!`);
+        showPattern();
+    };
 }
 document.querySelectorAll('.con1').forEach(initGame);
