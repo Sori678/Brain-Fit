@@ -1,3 +1,4 @@
+
 // toggle navbar 
 const navBarr = document.getElementById('barr');
 const navMenu = document.querySelector('.nav-menu');
@@ -22,8 +23,8 @@ function initGame(container) {
     const btnStart = container.querySelector('.btn1'); // Start / Next
     const btnConfirm = container.querySelector('.btn3'); // Confirm
     const btnReset = container.querySelector('.btn2'); // Reset
-    const con1 = document.querySelector('.con1');
-    const btni1 = document.querySelector('.btni1');
+    const btni1 = container.querySelector('.btni1');
+    let btni1c = false;
     const statusEl = container.querySelector('.status'); // message UX
     if (!cells.length || !btnStart || !btnConfirm || !btnReset) return;
 
@@ -121,19 +122,29 @@ function initGame(container) {
     const startRound = () => {
         const s = container._state;
         if (s.busy) return;
-        ensureGridForLevel();
+
+        const ensureGridForLevel = () => {
+            const s = container._state;
+            const desired = getDesiredGridSizeForLevel(s.level);
+            if (!s.gridSize || s.gridSize !== desired) {
+                setGridSize(desired);
+                s.gridSize = desired;
+                refreshCells(); 
+            }
+        };
         // visual reset + states
         clearVisual();
         s.selected.clear();
         s.solution.clear();
-        con1.classList.add('tog');
+        container.classList.add('tog');
         btni1.classList.add('visible');
-        btni1.addEventListener('click', () => {
-            if (btni1) {
-                con1.classList.remove('tog');
+        if (btni1 && !btni1c) {
+            btni1.addEventListener('click', () => {
+                container.classList.remove('tog');
                 btni1.classList.remove('visible');
-            }
-        });
+            });
+            btni1c = true;
+        }
         // calculate how many cells light up
         const target = computeTarget();
         const chosen = pickUnique(target, cells.length);

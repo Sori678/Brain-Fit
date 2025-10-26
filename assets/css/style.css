@@ -136,20 +136,18 @@ a:hover {
 
 .vis-memory-boxes {
     display: grid;
-    gap: 2px;
+    gap: 8px;
+    grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
     width: 100%;
-    aspect-ratio: 1 / 1;
     max-width: 100%;
-    grid-template-columns: repeat(var(--cols, 4), auto);
-    justify-content: center;
 }
 
 .vis-memory-box {
     display: grid;
     background-color: var(--secondary-color);
-    aspect-ratio: 1/1; 
+    aspect-ratio: 1/1;
     width: 100%;
-    max-width: 80px; 
+    max-width: 80px;
     transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
     aspect-ratio: 1 / 1;
     outline: none;
@@ -242,8 +240,8 @@ button[disabled] {
     visibility: hidden;
     justify-self: end;
     transition: transform 0.3s ease, opacity 0.2s ease;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     padding: 15px 25px 0 0;
     cursor: pointer;
 }
@@ -325,6 +323,7 @@ footer {
         transform: scale(1.4);
         margin-top: 30%;
     }
+
     .close.btni1.visible {
         visibility: visible;
     }
