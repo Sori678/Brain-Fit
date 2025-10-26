@@ -6,6 +6,16 @@ if (navBarr && navMenu) {
         navMenu.classList.toggle('is-open');
     });
 }
+
+// pick unique number 
+function pickUnique(count, max) {
+    const out = [];
+    while (out.length < count) {
+        const idx = Math.floor(Math.random() * max);
+        if (!out.includes(idx)) out.push(idx);
+    }
+    return out;
+}
 // game init 
 function initGame(container) {
     const cells = Array.from(container.querySelectorAll('.vis-memory-box'));
