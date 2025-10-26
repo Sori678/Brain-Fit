@@ -63,6 +63,9 @@ header {
 .nav-menu {
     display: none;
 }
+.nav-menu.is-open {
+    display: grid;
+}
 /* nav links*/
 nav>ul {
     display: grid;
