@@ -248,5 +248,35 @@ const VM_STORE = {
   currentKey: 'vm_current_player',
   playersKey: 'vm_players' 
 };
+const vm_loadPlayers = () => {
+  try { return JSON.parse(localStorage.getItem(VM_STORE.playersKey)) || {}; }
+  catch { return {}; }
+};
+const vm_savePlayers = (obj) => localStorage.setItem(VM_STORE.playersKey, JSON.stringify(obj || {}));
 
+const vm_getCurrentId = () => localStorage.getItem(VM_STORE.currentKey) || null;
+const vm_setCurrentId = (id) => localStorage.setItem(VM_STORE.currentKey, id);
+
+const vm_getCurrentPlayer = () => {
+  const id = vm_getCurrentId();
+  if (!id) return null;
+  const players = vm_loadPlayers();
+  return players[id] || null;
+};
+const vm_upsertPlayer = ({ name, email }) => {
+  const players = vm_loadPlayers();
+  const id = (email && email.trim()) ? `email:${email.trim().toLowerCase()}` :
+            (name && name.trim()) ? `name:${name.trim().toLowerCase()}` :
+            `anon:${Date.now()}`;
+  if (!players[id]) {
+    players[id] = { id, name: name?.trim() || '', email: email?.trim() || '', records: { visualMemory: { highLevel: 1 } } };
+  } else {
+    if (name && name.trim()) players[id].name = name.trim();
+    if (email && email.trim()) players[id].email = email.trim();
+    if (!players[id].records?.visualMemory) players[id].records = { visualMemory: { highLevel: 1 } };
+  }
+  vm_savePlayers(players);
+  vm_setCurrentId(id);
+  return players[id];
+};
 
