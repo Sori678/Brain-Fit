@@ -420,4 +420,9 @@ function initNumberMemory(container) {
         const n = Math.floor(Math.random() * (max - min + 1)) + min;
         return String(n);
     };
+    input.addEventListener('input', () => {
+        const maxLen = state.level;
+        input.value = input.value.replace(/\D+/g, '').slice(0, maxLen);
+        btnSubmit.disabled = (input.value.length !== maxLen);
+    });
 }
