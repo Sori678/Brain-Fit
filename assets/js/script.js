@@ -408,4 +408,16 @@ function initNumberMemory(container) {
         container.classList.toggle('is-busy', v);
     };
     const clearUI = () => { box.textContent = ''; input.value = ''; };
-};
+
+    const randomNumberForLevel = (lvl) => {
+        const d = Math.max(1, lvl);
+        if (d === 1) {
+
+            return String(Math.floor(Math.random() * 10));
+        }
+        const min = Math.pow(10, d - 1);
+        const max = Math.pow(10, d) - 1;
+        const n = Math.floor(Math.random() * (max - min + 1)) + min;
+        return String(n);
+    };
+}
