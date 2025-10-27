@@ -497,4 +497,17 @@ function initNumberMemory(container) {
         btnSubmit.disabled = true;
         setStatus('Game reset. Press Start.');
     };
+    btnStart.addEventListener('click', startRound);
+    btnSubmit.addEventListener('click', confirmAnswer);
+    btnReset.addEventListener('click', resetGame);
+
+    if (playOverlay) {
+        playOverlay.addEventListener('click', () => {
+            playOverlay.setAttribute('aria-hidden', 'true');
+            playOverlay.style.display = 'none';
+            setStatus('Pregătit. Apasă Start.');
+        });
+    }
+    btnSubmit.disabled = true;
+    setStatus('Ready. Press Start.');
 }
