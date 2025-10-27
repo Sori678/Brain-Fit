@@ -468,11 +468,11 @@ function initNumberMemory(container) {
 
         if (ok) {
             setStatus('Corect! 🎉');
-            state.level += 1;                  
-            state.memTime = Math.max(500, state.memTime - 50); 
+            state.level += 1;
+            state.memTime = Math.max(500, state.memTime - 50);
         } else {
             setStatus(`Wrong. Correct answer: ${state.current}`);
-    
+
         }
         box.textContent = state.current;
         setTimeout(() => {
@@ -484,5 +484,17 @@ function initNumberMemory(container) {
             btnSubmit.disabled = true;
             setStatus(`Current level: ${state.level} number${state.level === 1 ? 'a' : 'e'}. Press Start.`);
         }, 10000);
+    };
+    const resetGame = () => {
+        state.level = 1;
+        state.memTime = 1200;
+        state.current = '';
+        state.phase = 'idle';
+        setBusy(false);
+        box.textContent = '';
+        input.value = '';
+        btnStart.disabled = false;
+        btnSubmit.disabled = true;
+        setStatus('Game reset. Press Start.');
     };
 }
