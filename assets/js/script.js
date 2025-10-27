@@ -425,4 +425,10 @@ function initNumberMemory(container) {
         input.value = input.value.replace(/\D+/g, '').slice(0, maxLen);
         btnSubmit.disabled = (input.value.length !== maxLen);
     });
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !btnSubmit.disabled && state.phase === 'input' && !state.busy) {
+            e.preventDefault();
+            confirmAnswer();
+        }
+    });
 }
