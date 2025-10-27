@@ -374,3 +374,38 @@ document.getElementById('nav-play')?.addEventListener('click', (e) => {
         document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
+
+// Number memory
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.con2');
+    containers.forEach(initNumberMemory);
+});
+
+function initNumberMemory(container) {
+    const box = container.querySelector('.numberr');
+    const input = container.querySelector('#number');
+    const btnStart = container.querySelector('.btn1');
+    const btnSubmit = container.querySelector('.btn3');
+    const btnReset = container.querySelector('.btn2');
+    const statusEl = container.querySelector('.status');
+
+    if (!box || !input || !btnStart || !btnSubmit || !btnReset || !statusEl) {
+        console.warn('NumberMemory: missing items in container', container);
+        return;
+    }
+
+    const state = {
+        level: 1,
+        memTime: 1200,
+        current: '',
+        phase: 'idle',
+        busy: false
+    };
+
+    const setStatus = (msg) => { statusEl.textContent = msg; };
+    const setBusy = (v) => {
+        state.busy = v;
+        container.classList.toggle('is-busy', v);
+    };
+    const clearUI = () => { box.textContent = ''; input.value = ''; };
+};

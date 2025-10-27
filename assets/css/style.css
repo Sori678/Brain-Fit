@@ -125,18 +125,14 @@ a:hover {
     cursor: pointer;
 }
 
-.game-container h2[data-user]::after {
-    content: " " attr(data-user);
-    font-weight: 200;
-    font-size: .4em;
-    font-family: var(--primary-font);
-    color: var(--secondary-color);
-}
-
 .con1.is-busy .vis-memory-box {
     pointer-events: none;
     cursor: not-allowed;
     opacity: .7;
+}
+
+.con2.is-busy {
+    pointer-events: none;
 }
 
 /*Games boxes */
