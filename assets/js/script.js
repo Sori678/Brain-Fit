@@ -431,4 +431,58 @@ function initNumberMemory(container) {
             confirmAnswer();
         }
     });
+    const startRound = () => {
+        if (state.busy) return;
+
+        state.current = randomNumberForLevel(state.level);
+        state.phase = 'memorize';
+        setBusy(true);
+
+        btnStart.disabled = true;
+        btnSubmit.disabled = true;
+        input.blur();
+        input.setAttribute('aria-disabled', 'true');
+        input.setAttribute('readonly', 'readonly');
+
+        box.textContent = state.current;
+        setStatus(`Memorize: number with ${state.level} number${state.level === 1 ? 'a' : 'e'}`);
+
+        setTimeout(() => {
+            box.textContent = '';
+            state.phase = 'input';
+            setBusy(false);
+            setStatus(`Enter the number (has ${state.level} number${state.level === 1 ? 'a' : 'e'})`);
+            input.removeAttribute('aria-disabled');
+            input.removeAttribute('readonly');
+            input.value = '';
+            input.focus();
+            btnSubmit.disabled = true;
+        }, state.memTime);
+    };
+    const confirmAnswer = () => {
+        if (state.phase !== 'input' || state.busy) return;
+        state.phase = 'feedback';
+        setBusy(true);
+
+        const ok = (input.value.trim() === state.current);
+
+        if (ok) {
+            setStatus('Corect! 🎉');
+            state.level += 1;                  
+            state.memTime = Math.max(500, state.memTime - 50); 
+        } else {
+            setStatus(`Wrong. Correct answer: ${state.current}`);
+    
+        }
+        box.textContent = state.current;
+        setTimeout(() => {
+            box.textContent = '';
+            input.value = '';
+            state.phase = 'idle';
+            setBusy(false);
+            btnStart.disabled = false;
+            btnSubmit.disabled = true;
+            setStatus(`Current level: ${state.level} number${state.level === 1 ? 'a' : 'e'}. Press Start.`);
+        }, 10000);
+    };
 }
