@@ -117,8 +117,8 @@ a:hover {
     height: auto;
     border: 2px solid var(--quaternary-color);
     border-radius: 5px;
-    background-color: var(--primary-color);
     margin-top: 10px;
+    background-color: var(--primary-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 2px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
@@ -173,7 +173,7 @@ a:hover {
 }
 
 .vis-memory-box.is-selected {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     box-shadow: 0 0 0 3px var(--secondary-color) inset;
     transform: scale(0.98);
 }
@@ -428,10 +428,21 @@ footer {
 
     .con1.tog {
         transform: scale(1.4);
-        margin-top: 30%;
+        margin-top: 10%;
+        position: absolute;
+        width: auto;
+        z-index: 1000;
     }
-
+    .con2.tog {
+        position: absolute;
+        width: auto;
+        transform: scale(1.6);
+        
+    }
     .close.btni1.visible {
+        visibility: visible;
+    }
+    .close.btni2.visible {
         visibility: visible;
     }
 }

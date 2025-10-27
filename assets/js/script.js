@@ -368,9 +368,74 @@ const vm_renderScoreboard = () => {
         }
     }
 };
+// number memory save & render helpers 
+function nm_pushTopScore(levelReached) { 
+    const players = vm_loadPlayers();
+    const cur = vm_getCurrentPlayer(); if (!cur) return;
+    const p = players[cur.id] || cur;
+
+    if (!p.records) p.records = {};
+    if (!p.records.numberMemory) p.records.numberMemory = { highLevel: 1, top: [] };
+
+    const rec = p.records.numberMemory;
+    const top = Array.isArray(rec.top) ? rec.top.slice() : [];
+    top.push(levelReached);
+
+    const unique = [...new Set(top)];
+    unique.sort((a,b) => b - a);
+    rec.top = unique.slice(0, 3);
+
+    if (levelReached > (rec.highLevel || 1)) rec.highLevel = levelReached;
+
+    players[p.id] = p;
+    vm_savePlayers(players);
+}
+
+function nm_renderScoreboard() { 
+    const panel = document.querySelector('#records .records-nm');
+    if (!panel) return;
+    const title = panel.querySelector('.title-nm');
+    const userEl = panel.querySelector('.player-name-nm');
+    const list  = panel.querySelector('.or-player-nm');
+
+    title && (title.textContent = 'Number Memory');
+    const cur = vm_getCurrentPlayer();
+    userEl && (userEl.textContent = cur?.name || cur?.email || 'Guest');
+
+    if (list) {
+        list.innerHTML = '';
+        const top = cur?.records?.numberMemory?.top || [];
+        if (top.length === 0) {
+            const li = document.createElement('li');
+            li.textContent = '— you don’t have any scores yet —';
+            list.appendChild(li);
+        } else {
+            top.forEach((lvl, i) => {
+                const li = document.createElement('li');
+                li.textContent = `#${i + 1}: Level ${lvl}`;
+                list.appendChild(li);
+            });
+        }
+    }
+}
+
+function showRecordPanel(which) { 
+    const vm = document.querySelector('#records .records-vm');
+    const nm = document.querySelector('#records .records-nm');
+    if (!vm || !nm) return;
+    if (which === 'nm') {
+        vm.hidden = true;
+        nm.hidden = false;
+    } else {
+        vm.hidden = false;
+        nm.hidden = true;
+    }
+}
 document.getElementById('nav-play')?.addEventListener('click', (e) => {
     e.preventDefault();
     requireAuth(() => {
+        vm_renderScoreboard();
+        showRecordPanel('vm'); 
         document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
@@ -388,6 +453,9 @@ function initNumberMemory(container) {
     const btnSubmit = container.querySelector('.btn3');
     const btnReset = container.querySelector('.btn2');
     const statusEl = container.querySelector('.status');
+    const playOverlay = container.querySelector('.playg2'); 
+    const btni2 = container.querySelector('.btni2');
+    let btni2c = false;
 
     if (!box || !input || !btnStart || !btnSubmit || !btnReset || !statusEl) {
         console.warn('NumberMemory: missing items in container', container);
@@ -443,7 +511,15 @@ function initNumberMemory(container) {
         input.blur();
         input.setAttribute('aria-disabled', 'true');
         input.setAttribute('readonly', 'readonly');
-
+        container.classList.add('tog');
+        btni2.classList.add('visible');
+        if (btni2 && !btni2c) {
+            btni2.addEventListener('click', () => {
+                container.classList.remove('tog');
+                btni2.classList.remove('visible');
+            });
+            btni2c = true;
+        }
         box.textContent = state.current;
         setStatus(`Memorize: number with ${state.level} number${state.level === 1 ? 'a' : 'e'}`);
 
@@ -468,6 +544,7 @@ function initNumberMemory(container) {
 
         if (ok) {
             setStatus('Corect! 🎉');
+            nm_pushTopScore(state.level); 
             state.level += 1;
             state.memTime = Math.max(500, state.memTime - 50);
         } else {
@@ -482,6 +559,8 @@ function initNumberMemory(container) {
             setBusy(false);
             btnStart.disabled = false;
             btnSubmit.disabled = true;
+            nm_renderScoreboard(); 
+            showRecordPanel('nm'); 
             setStatus(`Current level: ${state.level} number${state.level === 1 ? 'a' : 'e'}. Press Start.`);
         }, 10000);
     };
@@ -496,6 +575,8 @@ function initNumberMemory(container) {
         btnStart.disabled = false;
         btnSubmit.disabled = true;
         setStatus('Game reset. Press Start.');
+        nm_renderScoreboard(); 
+        showRecordPanel('nm'); 
     };
     btnStart.addEventListener('click', startRound);
     btnSubmit.addEventListener('click', confirmAnswer);
@@ -505,9 +586,13 @@ function initNumberMemory(container) {
         playOverlay.addEventListener('click', () => {
             playOverlay.setAttribute('aria-hidden', 'true');
             playOverlay.style.display = 'none';
-            setStatus('Pregătit. Apasă Start.');
+            setStatus('Ready. Press Start.');
         });
     }
     btnSubmit.disabled = true;
     setStatus('Ready. Press Start.');
+    btnStart.addEventListener('click', () => { 
+        nm_renderScoreboard();
+        showRecordPanel('nm');
+    });
 }
