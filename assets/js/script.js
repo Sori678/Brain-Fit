@@ -317,6 +317,10 @@ const requireAuth = (onReady) => {
             return;
         }
         const u = vm_upsertPlayer({ name, email });
+        // Render scores immediately after login
+        vm_renderScoreboard();
+        nm_renderScoreboard();
+
         vm_closeAuth();
         authForm.removeEventListener('submit', onSubmit);
         onReady?.(u);
@@ -438,6 +442,14 @@ document.getElementById('nav-play')?.addEventListener('click', (e) => {
         showRecordPanel('vm'); 
         document.getElementById('vis-memory-game')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+});
+
+// On load if the user is already saved show the scores immediately
+document.addEventListener('DOMContentLoaded', () => {
+    if (vm_getCurrentPlayer()) {
+        vm_renderScoreboard();
+        nm_renderScoreboard();
+    }
 });
 
 // Number memory
@@ -578,7 +590,7 @@ function initNumberMemory(container) {
         nm_renderScoreboard(); 
         showRecordPanel('nm'); 
     };
-    btnStart.addEventListener('click', startRound);
+    btnStart.addEventListener('click', () => requireAuth(startRound));
     btnSubmit.addEventListener('click', confirmAnswer);
     btnReset.addEventListener('click', resetGame);
 

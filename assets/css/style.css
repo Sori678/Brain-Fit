@@ -130,9 +130,11 @@ a:hover {
     cursor: not-allowed;
     opacity: .7;
 }
+
 .con2.is-busy {
     pointer-events: none;
 }
+
 .con2 .numberr {
     min-height: 2.4rem;
     display: grid;
@@ -141,6 +143,7 @@ a:hover {
     font: 700 1.6rem/1.2 system-ui, sans-serif;
     letter-spacing: .06em;
 }
+
 .con2 input[type="number"][readonly] {
     background: #f5f5f5;
 }
@@ -433,15 +436,18 @@ footer {
         width: auto;
         z-index: 1000;
     }
+
     .con2.tog {
         position: absolute;
         width: auto;
         transform: scale(1.6);
-        
+
     }
+
     .close.btni1.visible {
         visibility: visible;
     }
+
     .close.btni2.visible {
         visibility: visible;
     }
