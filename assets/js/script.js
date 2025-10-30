@@ -1,3 +1,5 @@
+/* jshint esversion: 11 */
+
 // toggle navbar 
 const navBarr = document.getElementById('barr');
 const navMenu = document.querySelector('.nav-menu');
@@ -84,8 +86,9 @@ function initGame(container) {
             s.gridSize = desired;
         }
     };
+    ensureGridForLevel();
     // helpers UI
-    const setStatus = (msg) => { if (statusEl) statusEl.textContent = msg; };
+    function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
     const setBusy = (val) => {
         container._state.busy = val;
         container.classList.toggle('is-busy', val);
@@ -130,7 +133,9 @@ function initGame(container) {
                 s.gridSize = desired;
                 refreshCells();
             }
+        
         };
+        ensureGridForLevel();
         // visual reset + states
         clearVisual();
         s.selected.clear();
@@ -244,6 +249,7 @@ function initGame(container) {
     btnConfirm.disabled = true;
     setStatus('Ready. Press Start.');
 }
+
 document.querySelectorAll('.con1').forEach(initGame);
 
 // user, and score storage 
@@ -292,7 +298,9 @@ const vm_updateHighLevel = (levelReached) => {
         p.records.visualMemory.highLevel = levelReached;
         vm_savePlayers(players);
     }
+vm_updateHighLevel();
 };
+
 const authModal = document.getElementById('sign');
 const authForm = document.getElementById('registration-form');
 const authClose = authModal?.querySelector('.sign-btnc');
@@ -348,13 +356,12 @@ const vm_pushTopScore = (levelReached) => {
 const vm_renderScoreboard = () => {
     const panel = document.getElementById('records');
     if (!panel) return;
-    const title = panel.querySelector('.title');
-    const userEl = panel.querySelector('.player-name');
+   
+
     const list = panel.querySelector('.or-player');
 
-    title && (title.textContent = 'Visual Memory');
     const cur = vm_getCurrentPlayer();
-    userEl && (userEl.textContent = cur?.name || cur?.email || 'Guest');
+   
 
     if (list) {
         list.innerHTML = '';
@@ -398,13 +405,13 @@ function nm_pushTopScore(levelReached) {
 function nm_renderScoreboard() { 
     const panel = document.querySelector('#records .records-nm');
     if (!panel) return;
-    const title = panel.querySelector('.title-nm');
-    const userEl = panel.querySelector('.player-name-nm');
+   
+    
     const list  = panel.querySelector('.or-player-nm');
 
-    title && (title.textContent = 'Number Memory');
+   
     const cur = vm_getCurrentPlayer();
-    userEl && (userEl.textContent = cur?.name || cur?.email || 'Guest');
+   
 
     if (list) {
         list.innerHTML = '';
@@ -500,6 +507,7 @@ function initNumberMemory(container) {
         const n = Math.floor(Math.random() * (max - min + 1)) + min;
         return String(n);
     };
+                               clearUI();
     input.addEventListener('input', () => {
         const maxLen = state.level;
         input.value = input.value.replace(/\D+/g, '').slice(0, maxLen);
@@ -574,7 +582,7 @@ function initNumberMemory(container) {
             nm_renderScoreboard(); 
             showRecordPanel('nm'); 
             setStatus(`Current level: ${state.level} number${state.level === 1 ? 'a' : 'e'}. Press Start.`);
-        }, 10000);
+        }, 2500);
     };
     const resetGame = () => {
         state.level = 1;
