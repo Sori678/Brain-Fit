@@ -1,0 +1,88 @@
+[33m713b68e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup-current[m[33m)[m HEAD@{0}: checkout: moving from backup-pre-delete to main
+[33m3c8be7b[m[33m ([m[1;32mbackup-pre-delete[m[33m)[m HEAD@{1}: checkout: moving from main to backup-pre-delete
+[33m713b68e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup-current[m[33m)[m HEAD@{2}: checkout: moving from backup-pre-delete to main
+[33m3c8be7b[m[33m ([m[1;32mbackup-pre-delete[m[33m)[m HEAD@{3}: reset: moving to 3c8be7b
+[33mb1dfc60[m HEAD@{4}: checkout: moving from main to backup-pre-delete
+[33m713b68e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup-current[m[33m)[m HEAD@{5}: checkout: moving from main to main
+[33m713b68e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup-current[m[33m)[m HEAD@{6}: reset: moving to HEAD~1
+[33m3c8be7b[m[33m ([m[1;32mbackup-pre-delete[m[33m)[m HEAD@{7}: checkout: moving from main to main
+[33m3c8be7b[m[33m ([m[1;32mbackup-pre-delete[m[33m)[m HEAD@{8}: reset: moving to HEAD~3
+[33m3ad9c1c[m HEAD@{9}: checkout: moving from main to main
+[33m3ad9c1c[m HEAD@{10}: commit: Final README.md and validation fixes
+[33m96601aa[m HEAD@{11}: reset: moving to HEAD~1
+[33m72429a6[m HEAD@{12}: checkout: moving from main to main
+[33m72429a6[m HEAD@{13}: commit: Corected README.md
+[33m96601aa[m HEAD@{14}: commit: fixed issue and check on validator
+[33m381c53a[m HEAD@{15}: commit: fixed problem and debug some problems
+[33m3c8be7b[m[33m ([m[1;32mbackup-pre-delete[m[33m)[m HEAD@{16}: commit: fixed sintax problem
+[33m713b68e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mbackup-current[m[33m)[m HEAD@{17}: commit: created function to store number memory records
+[33m278a55b[m HEAD@{18}: commit: add click and number memory records div
+[33m00aa6d5[m HEAD@{19}: commit: add reset game function
+[33med4130d[m HEAD@{20}: commit: add confirm answer function and level grow
+[33mfab6e40[m HEAD@{21}: commit: enter submit
+[33m3737016[m HEAD@{22}: commit: add function to limit imput of number acording to current level
+[33m243deab[m HEAD@{23}: commit: add function to generate right number in dependence of curent level
+[33m1316235[m HEAD@{24}: commit: start interactiviti for number memory game
+[33mb5d9f66[m HEAD@{25}: commit: add fucntion to store records
+[33ma24a8ba[m HEAD@{26}: commit: add records div to store records
+[33m7b36787[m HEAD@{27}: commit: ask for username and after start game
+[33me0e4285[m HEAD@{28}: commit: display required sign in when is pushed play link
+[33me27f25e[m HEAD@{29}: commit: required if not the current user, open the modal and wait for submit
+[33m73800cf[m HEAD@{30}: commit: auto fill helper
+[33m48d90d5[m HEAD@{31}: commit: update score
+[33m88bc062[m HEAD@{32}: commit: create and update users
+[33mf439257[m HEAD@{33}: reset: moving to HEAD~3
+[33mb1dfc60[m HEAD@{34}: checkout: moving from main to main
+[33mb1dfc60[m HEAD@{35}: commit: create required if user didn't has registration and sign close button
+[33m3dba394[m HEAD@{36}: commit: create auto help to fil data
+[33m52c6660[m HEAD@{37}: commit: update name email
+[33mf439257[m HEAD@{38}: commit: start to create users score and data storage
+[33mf283df2[m HEAD@{39}: commit: style sign
+[33mf969d2d[m HEAD@{40}: commit: add sign section
+[33m6cf4860[m HEAD@{41}: commit: fixed overlall game container
+[33mbe05f00[m HEAD@{42}: commit: add function to scale game container and when is pres close buton to toggle to default style
+[33mf737446[m HEAD@{43}: commit: add close icons
+[33md8f5efe[m HEAD@{44}: commit: created function witch add cells after each 7 levels
+[33mefc4d8f[m HEAD@{45}: commit: set size
+[33m3e71614[m HEAD@{46}: commit: set number of cells
+[33m7ea604e[m HEAD@{47}: commit: start expands cells function
+[33m9da785c[m HEAD@{48}: commit: add reset function
+[33mf704639[m HEAD@{49}: commit: add confirmation and feedback
+[33ma3dcceb[m HEAD@{50}: commit: add click function
+[33m02640dc[m HEAD@{51}: commit: add listener
+[33m39a33f1[m HEAD@{52}: commit: add cells calculations
+[33mcd9256a[m HEAD@{53}: commit: add showPattern for UI
+[33m73825c5[m HEAD@{54}: commit: add round calculation
+[33mc4aa97b[m HEAD@{55}: commit: add visual clear game
+[33m405ed29[m HEAD@{56}: commit: add info for gamers
+[33m3e9f738[m HEAD@{57}: commit: create memory con for game
+[33m3d29191[m HEAD@{58}: commit: create pickunique function to return random number
+[33m67dcb1c[m HEAD@{59}: commit: add font style on games sectionand body
+[33mee96eda[m HEAD@{60}: commit: Start create intitGame function
+[33mcf48c45[m HEAD@{61}: commit: add js to togle nav bar
+[33m83b5850[m HEAD@{62}: commit: Adjust nav for big screens
+[33mda767ad[m HEAD@{63}: commit: style footer and contact sections
+[33m2a4fda6[m HEAD@{64}: commit: style about section
+[33mc2bb9dc[m HEAD@{65}: commit: style control buttons
+[33mf427b33[m HEAD@{66}: commit: style control div
+[33m085a814[m HEAD@{67}: commit: style number memory box
+[33mf704f57[m HEAD@{68}: commit: style vis memory boxes
+[33maee4251[m HEAD@{69}: commit: style games section and game container
+[33m450f90e[m HEAD@{70}: commit: style nav links
+[33mcb7e4d0[m HEAD@{71}: commit: style header, logo nav sections
+[33m440b92c[m HEAD@{72}: commit: style body and main section
+[33m9095dbd[m HEAD@{73}: commit: add variables
+[33m9ce141c[m HEAD@{74}: commit: add global style
+[33m67b8f62[m HEAD@{75}: commit: add google fonts
+[33m3bc4eb5[m HEAD@{76}: commit: add burrger icon for nav
+[33m0cce97d[m HEAD@{77}: commit: add logo
+[33m0850af6[m HEAD@{78}: commit: add content on foopter section
+[33m9dcf685[m HEAD@{79}: commit: add content on about section
+[33md36f971[m HEAD@{80}: commit: add label and input in number memory box game and control buttons
+[33mdb24a56[m HEAD@{81}: commit: add control buttons to vision game
+[33mff29225[m HEAD@{82}: commit: add buttons for vision games section
+[33mcc427c6[m HEAD@{83}: commit: Add visual memory, and number sections
+[33m9cc2ea0[m HEAD@{84}: commit: add nav,games,about, and contact sections
+[33mca440d3[m HEAD@{85}: commit: create index.htmk structure and conected it with css, and js
+[33m9c2fb57[m HEAD@{86}: commit: create folders structure
+[33m6d6e83c[m HEAD@{87}: commit (initial): Initial commit
