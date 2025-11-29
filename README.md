@@ -1,14 +1,18 @@
 # Brain Fit – Interactive Memory Games
 
-**Brain Fit** is an interactive web application designed to train short-term memory and cognitive skills through two mini-games:
+**Brain Fit** is an interactive web application designed to train short-term memory and cognitive focus through two dynamic games:
 
-🧠 **Visual Memory**  
-🔢 **Number Memory**
+🧠 Visual Memory  
+🔢 Number Memory
 
-The project implements authentication, dynamic scoring, responsive layouts and real-time feedback — built entirely with **HTML, CSS, and JavaScript**.
+Users can log in with just a name or email, track their best performances, and enjoy real-time feedback.  
+The project is built using **HTML, CSS, and JavaScript**.
 
-Live Site: https://sori678.github.io/Brain-Fit/  
-GitHub Repository: https://github.com/Sori678/Brain-Fit
+Live Site:  
+👉 https://sori678.github.io/Brain-Fit/
+
+GitHub Repository:  
+👉 https://github.com/Sori678/Brain-Fit
 
 ---
 
@@ -25,65 +29,65 @@ GitHub Repository: https://github.com/Sori678/Brain-Fit
 - [Data Model](#data-model)
 - [Deployment](#deployment)
 - [Cloning the Repository](#cloning-the-repository)
-- [Acknowledgements](#acknowledgements)
+- [Acknowledgements / Attribution](#acknowledgements--attribution)
 
 ---
 
 ## Project Overview
 
-**Brain Fit** challenges users to memorize patterns, numbers, and track their best scores through a lightweight and accessible user interface.  
-User accounts are created with **only a name or email**, and all progress is saved via **LocalStorage**.  
-The site is fully responsive and accessible, ensuring a smooth user experience across devices.
+**Brain Fit** challenges users to memorize patterns and numbers while tracking their best scores.  
+User accounts require only a name or email, and all progress is saved using **LocalStorage**.  
+The interface is lightweight, responsive, and accessible across all devices.
 
 ---
 
 ## Strategy
 
-The main goal is to help users improve memory while receiving immediate feedback and motivation through score tracking.
+The purpose of this project is to help users improve memory and concentration through short, engaging brain-training exercises.  
+The structure encourages repeated play and reward through progressive difficulty and score tracking.
 
 ---
 
 ## Target Audience
 
-- Students and professionals working on concentration and memory  
-- Users who enjoy mini-games and mental challenges  
-- Anyone who wants to train their brain without complex login systems
+- Students wishing to improve cognitive performance  
+- Users who enjoy memory games  
+- Anyone looking for simple brain-training activities  
 
 ---
 
 ## User Stories
 
 1. As a user, I want to start a game easily so I can play without confusion.  
-2. As a user, I want to log in with minimal information so my scores are saved.  
-3. As a user, I want to see my top results to track progress.  
-4. As a user, I want the site to provide feedback after each round.  
-5. As a user, I want the interface to be responsive and accessible.
+2. As a user, I want minimal login steps so that I can quickly begin.  
+3. As a user, I want to track my best scores to monitor progress.  
+4. As a user, I want immediate feedback after each round.  
+5. As a user, I want the app to be responsive and accessible on all devices.
 
 ---
 
 ## Design
 
 ### Colour Scheme
-- Background: light, minimalistic  
-- Primary highlight: blue  
-- Feedback colors:  
+- Light, minimal background  
+- Blue accent colours  
+- Feedback indicators:  
   - Green = correct  
   - Red = wrong  
-  - Yellow = warning
+  - Yellow = warning  
 
 ### Typography
-- **Open Sans** – clean main font  
-- **Bitcount Grid Single** – digital-style font for game titles
+- **Open Sans** – main UI font  
+- **Bitcount Grid Single** – digital-style headings  
 
-### Layout Structure
-- **Header** with navigation and burger menu  
-- **Main Section** containing both games  
-- **Scoreboard panel** showing best results  
-- **Registration modal** for user identification  
-- **Footer** with contact details  
+### Layout
+- Header navigation  
+- Main gameplay section  
+- Scoreboard panel  
+- Authentication modal  
+- Footer  
 
 ### Wireframes / Screenshots
-
 #### Home Page
 ![Home Page desktop](assets/images/homepage-desk.png)
 ![Home Page mobile](assets/images/homepage-mob.png)
@@ -98,52 +102,50 @@ The main goal is to help users improve memory while receiving immediate feedback
 #### Authentication Modal
 ![Auth Modal](assets/images/logIn.png)
 
+---
+
 ## Features
 
-### 1. Visual Memory Game
-- Random pattern of highlighted squares  
-- Grid expands automatically every **7 levels**  
-- Users must repeat the pattern  
-- Provides instant feedback  
-- Tracks top 3 scores  
-- Saves progress locally  
+### 🎮 Visual Memory Game
+- Highlights a random sequence of squares  
+- Grid expands every **7 levels**  
+- User repeats the pattern  
+- Lives system provides fairness  
+- Top 3 scores saved via LocalStorage  
 
-### 2. Number Memory Game
-- Shows a number briefly  
-- Each level increases digits (1 → 2 → 3 …)  
-- User must type the number exactly  
-- Failure reveals the correct number  
-- Tracks top 3 scores per user  
+### 🔢 Number Memory Game
+- Displays a number briefly  
+- Each level adds more digits  
+- User must type the exact number  
+- Top 3 scores saved for each user  
 
-### 3. Authentication Modal
-- Requests only **name or email**  
-- Required before any game starts  
-- Player is remembered automatically on next visits  
+### 🔐 Authentication Modal
+- Requires only name or email  
+- User remembered automatically (LocalStorage)  
 
-### 4. Scoreboard Panel
-- Shows current user  
-- Top 3 results per game  
-- Switches between Visual/Number Memory automatically  
+### 🏆 Scoreboard Panel
+- Displays top 3 scores for both games  
+- Shows highest level reached  
+- Highlights current user  
 
-### 5. Responsive Design
-- Fully optimized for phones, tablets, and desktops  
-- Grid, buttons, and containers resize smoothly  
+### 📱 Responsive Design
+- Works on all screen sizes  
+- Fluid layout and buttons  
 
-### 6. Accessibility
-- Uses semantic elements  
-- ARIA attributes (`aria-live`)  
-- Keyboard friendly  
-- Strong contrast and visible focus  
+### ♿ Accessibility
+- Semantic structure  
+- ARIA attributes  
+- Keyboard navigation support  
 
 ---
 
 ## Future Features
 
-- Online leaderboard with database  
+- Online global leaderboard  
 - Sound effects  
-- Multiple difficulty modes  
-- Customizable user profile  
-- Export/import score history  
+- Difficulty settings  
+- Player avatars and profiles  
+- Score export/import  
 
 ---
 
@@ -154,40 +156,41 @@ The main goal is to help users improve memory while receiving immediate feedback
 - **JavaScript (ES6)**  
 - **LocalStorage API**  
 - **Google Fonts**  
-- **Font Awesome Icons**  
-- **Git / GitHub** (version control)  
-- **GitHub Pages** (deployment)  
-- **JSHint**, **W3C Validators** (code quality)
+- **Font Awesome**  
+- **Git / GitHub**  
+- **GitHub Pages**  
+- **W3C Validators, JSHint**
 
 ---
 
 ## Testing
 
-### Code Validation Results
+### Code Validation
 
 | Language | Validator | Result |
 |----------|-----------|--------|
-| HTML | W3C Markup Validator | 0 Errors |
-| CSS | W3C Jigsaw | 0 Errors |
-| JS | JSHint | No major issues |
+| HTML | W3C Markup Validator | ✔ 0 errors |
+| CSS | W3C Jigsaw | ✔ 0 errors |
+| JS | JSHint | ✔ no major issues |
 
 ### Manual Testing
 
-| Feature | Expected | Result |
-|--------|----------|--------|
-| Registration Modal | Prevents gameplay before login | ✔ Passed |
-| Visual Memory | Highlights random cells | ✔ Passed |
-| Number Memory | Increases digits each round | ✔ Passed |
-| Scoreboards | Show top 3 results | ✔ Passed |
-| Reset Buttons | Restart level 1 | ✔ Passed |
-| Responsive Layout | Works on all screens | ✔ Passed |
-| Accessibility | ARIA + keyboard controls | ✔ Passed |
+| Feature | Expected Result | Outcome |
+|--------|----------------|---------|
+| Login Modal | Blocks gameplay before login | ✔ Passed |
+| Visual Memory | Pattern displays correctly | ✔ Passed |
+| Number Memory | Digits increase each level | ✔ Passed |
+| Scoreboard | Shows top scores | ✔ Passed |
+| Reset buttons | Restart level 1 | ✔ Passed |
+| Error Handling | Feedback messages work | ✔ Passed |
+| Responsive Layout | Functional on all devices | ✔ Passed |
+| Accessibility | Works with keyboard navigation | ✔ Passed |
 
 ---
 
 ## Data Model
 
-Player data is stored in **localStorage** as JSON:
+The player data structure stored in **LocalStorage**:
 
 ```json
 {
@@ -200,3 +203,56 @@ Player data is stored in **localStorage** as JSON:
     }
   }
 }
+```
+
+---
+
+## Deployment
+
+The project was deployed using **GitHub Pages**.
+
+### Deployment Steps
+
+1. Open the repo:  
+   https://github.com/Sori678/Brain-Fit
+2. Go to **Settings > Pages**
+3. Under **Source**, select:  
+   - **Branch:** `main`  
+   - **Folder:** `/root`
+4. Click **Save**
+5. GitHub generates the live link:  
+   https://sori678.github.io/Brain-Fit/
+
+### Running Locally
+
+Clone the repository:
+
+```
+git clone https://github.com/Sori678/Brain-Fit.git
+```
+
+Then open `index.html` in your browser.
+
+---
+
+## Cloning the Repository
+
+```
+git clone https://github.com/Sori678/Brain-Fit.git
+```
+
+---
+
+## Acknowledgements / Attribution
+
+External resources used:
+
+- **Google Fonts** – typography  
+- **Font Awesome** – icons  
+- **MDN Web Docs** – documentation for JavaScript behaviour  
+- **StackOverflow** – conceptual help (no direct code copied)  
+- **YouTube tutorials** – inspiration for memory game mechanics (no code copied)  
+
+All HTML, CSS, and JavaScript code in this project was fully written by me.  
+No external code has been copied without attribution, in accordance with Code Institute’s academic integrity policy.
+
